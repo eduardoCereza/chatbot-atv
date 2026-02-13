@@ -7,16 +7,20 @@
        <title>Chat em Tempo Real</title>
    </head>
    <body>
+
+    
        <ul id="messages"></ul>
        <form id="form" action="">
            <input id="input" autocomplete="off" /><button>Enviar</button>
        </form>
 
+
+
        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.4/socket.io.js"></script>
        <script>
            var socket = io.connect('{{host}}');
 
-           socket.on('{{message}}', function(msg) {
+           socket.on('message', function(msg) {
                var ul = document.getElementById('messages');
                var li = document.createElement('li');
                li.appendChild(document.createTextNode(msg));
@@ -24,10 +28,12 @@
            });
 
            document.getElementById('form').onsubmit = function() {
-               socket.emit('{{message}}', document.getElementById('input').value);
+               socket.emit('message', document.getElementById('input').value);
                document.getElementById('input').value = '';
                return false;
            };
+
+           
        </script>
    </body>
 </html>
