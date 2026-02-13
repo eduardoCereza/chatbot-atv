@@ -1,9 +1,13 @@
-from flask import Flask
+from flask import Flask, render_template
 from flask_socketio import SocketIO
 
 app = Flask(__name__)
 
 socketio = SocketIO(app)
+
+@app.route("/chat", methods=['GET'])
+def render_page():
+    return render_template('index.html')
 
 @socketio.on('connect')
 def handle_connect():
