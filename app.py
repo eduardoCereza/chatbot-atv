@@ -7,7 +7,8 @@ socketio = SocketIO(app)
 
 @app.route("/chat", methods=['GET'])
 def render_page():
-    return render_template('index.html')
+    return render_template('index.html',
+                           host='http://127.0.0.1:5000')
 
 @socketio.on('connect')
 def handle_connect():
